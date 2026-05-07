@@ -1,0 +1,20 @@
+{
+  "id": "city_nara",
+  "slug": "nara_city",
+  "content_type": "city",
+  "title": "奈良",
+  "subtitle": "关西 · 古寺与公园",
+  "description": "奈良适合从京都或大阪出发做一日游，核心是奈良公园、东大寺和春日大社。",
+  "story": "奈良的玩法很集中，适合轻松步行，把鹿、寺院和神社文化放在同一天理解。",
+  "aliases": ["奈良市", "奈良旅行", "奈良一日游"],
+  "tags": ["奈良", "城市", "公园", "寺院", "一日游"],
+  "nearby": [
+    {"name": "奈良公园", "type": "spot", "distance_text": "市区", "description": "奈良经典公园。", "source": "database"}
+  ],
+  "foods": [],
+  "hotels": [],
+  "priority": 86,
+  "updated_at": "2026-05-06",
+  "source": "content_library",
+  "language": "zh"
+}

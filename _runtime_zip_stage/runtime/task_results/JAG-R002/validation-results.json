@@ -1,0 +1,9 @@
+{
+  "healthOk": true,
+  "chatOk": true,
+  "spotsOk": true,
+  "historyOk": true,
+  "languageOk": true,
+  "validationErrorUnified": true,
+  "notFoundUnified": true
+}

@@ -1,0 +1,20 @@
+{
+  "id": "spot_osaka_castle",
+  "slug": "osaka_castle",
+  "title": "大阪城",
+  "subtitle": "大阪 · 中央区",
+  "description": "大阪城是大阪历史地标，适合了解丰臣秀吉、大阪城公园和城市观景。",
+  "story": "大阪城把战国历史、博物馆展示和城市公园结合在一起。春季赏樱时适合安排半日游，也可以和大阪市中心美食路线组合。",
+  "tags": ["大阪", "历史", "城堡", "公园"],
+  "nearby": [
+    {"name": "大阪城公园", "type": "spot", "distance_text": "步行约3分钟", "description": "适合散步和赏樱。", "source": "database"}
+  ],
+  "foods": [
+    {"name": "章鱼烧", "area": "大阪", "description": "大阪经典街头小吃。", "source": "database"}
+  ],
+  "hotels": [
+    {"name": "难波周边酒店", "area": "难波", "description": "餐饮和交通选择多。", "source": "database"}
+  ],
+  "source": "content_library",
+  "language": "zh"
+}

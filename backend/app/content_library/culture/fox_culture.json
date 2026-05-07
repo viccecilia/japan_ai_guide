@@ -1,0 +1,18 @@
+{
+  "id": "culture_fox",
+  "slug": "fox_culture",
+  "content_type": "culture",
+  "title": "稻荷与狐狸文化",
+  "subtitle": "日本文化 · 伏见稻荷大社",
+  "description": "在稻荷信仰中，狐狸常被视为稻荷神的使者，因此伏见稻荷大社会看到许多狐狸意象。",
+  "story": "狐狸不是被直接当作神本身，而是与稻荷信仰、农业、商业和守护含义相连。理解这一点后，再看千本鸟居和狐狸像会更有层次。",
+  "aliases": ["狐狸文化", "稻荷狐狸", "伏见稻荷狐狸"],
+  "tags": ["伏见稻荷", "狐狸", "文化", "神社"],
+  "nearby": [],
+  "foods": [],
+  "hotels": [],
+  "priority": 78,
+  "updated_at": "2026-05-06",
+  "source": "content_library",
+  "language": "zh"
+}

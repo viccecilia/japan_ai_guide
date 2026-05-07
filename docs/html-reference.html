@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Japan AI Guide Demo</title>
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --panel:#ffffff;
+      --ink:#0f172a;
+      --muted:#64748b;
+      --line:#e2e8f0;
+      --blue:#2563eb;
+      --blue2:#1d4ed8;
+      --soft:#eff6ff;
+      --green:#16a34a;
+      --amber:#d97706;
+      --shadow:0 18px 45px rgba(15,23,42,.08);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC","Helvetica Neue",Arial,sans-serif;
+      background:radial-gradient(circle at top,#eef5ff 0,#f8fafc 42%,#f5f7fb 100%);
+      color:var(--ink);
+      height:100vh;
+      overflow:hidden;
+    }
+    .app{display:flex;height:100vh;width:100vw;}
+    .sidebar{
+      width:310px;
+      background:rgba(255,255,255,.78);
+      border-right:1px solid var(--line);
+      backdrop-filter:blur(16px);
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .side-top{display:flex;align-items:center;justify-content:space-between}
+    .brand-mini{font-weight:800;letter-spacing:.2px}
+    .new-chat{
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:999px;
+      padding:8px 12px;
+      font-weight:700;
+      color:var(--blue);
+      cursor:pointer;
+    }
+    .history-title{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    .history-list{display:flex;flex-direction:column;gap:10px;overflow:auto;padding-right:4px}
+    .history-item{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px 13px;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(15,23,42,.04);
+    }
+    .history-item:hover{border-color:#bfdbfe;background:#f8fbff}
+    .history-q{font-weight:750;font-size:14px;margin-bottom:4px}
+    .history-a{font-size:12px;color:var(--muted);line-height:1.45}
+    .main{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      position:relative;
+      overflow:hidden;
+    }
+    .topbar{
+      height:64px;
+      padding:14px 28px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .menu-btn{
+      display:none;
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:14px;
+      padding:9px 12px;
+      font-weight:800;
+    }
+    .lang{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-left:auto;
+    }
+    select{
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:999px;
+      padding:9px 14px;
+      color:var(--ink);
+      font-weight:700;
+      outline:none;
+      box-shadow:0 8px 20px rgba(15,23,42,.05);
+    }
+    .content{
+      flex:1;
+      overflow:auto;
+      padding:20px 28px 140px;
+    }
+    .hero{
+      max-width:900px;
+      margin:42px auto 24px;
+      text-align:center;
+    }
+    .logo{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:10px 16px;
+      box-shadow:var(--shadow);
+      font-weight:900;
+      margin-bottom:28px;
+    }
+    .logo-mark{
+      width:34px;height:34px;border-radius:12px;
+      background:linear-gradient(135deg,#2563eb,#7c3aed);
+      display:grid;place-items:center;color:#fff;
+      font-weight:900;
+    }
+    h1{font-size:46px;line-height:1.1;margin:0 0 12px;letter-spacing:-.04em}
+    .subtitle{font-size:17px;color:var(--muted);margin-bottom:28px}
+    .quick-grid{
+      max-width:760px;
+      margin:0 auto;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+    }
+    .quick{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.88);
+      padding:11px 15px;
+      border-radius:999px;
+      font-weight:750;
+      color:#334155;
+      cursor:pointer;
+      box-shadow:0 10px 22px rgba(15,23,42,.05);
+    }
+    .quick:hover{border-color:#93c5fd;background:#eff6ff;color:var(--blue2)}
+    .chat-stream{
+      max-width:900px;
+      margin:22px auto 0;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+    .user-msg{
+      align-self:flex-end;
+      background:var(--blue);
+      color:#fff;
+      padding:13px 16px;
+      border-radius:18px 18px 4px 18px;
+      max-width:70%;
+      box-shadow:0 12px 28px rgba(37,99,235,.22);
+      font-weight:700;
+    }
+    .answer-card{
+      background:rgba(255,255,255,.95);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+    .answer-head{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:flex-start;
+      margin-bottom:18px;
+    }
+    .tag{
+      display:inline-flex;
+      gap:6px;
+      align-items:center;
+      background:var(--soft);
+      color:var(--blue2);
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:12px;
+      font-weight:850;
+      margin-bottom:10px;
+    }
+    .answer-title{font-size:28px;font-weight:900;letter-spacing:-.03em;margin:0}
+    .answer-sub{color:var(--muted);font-size:14px;margin-top:5px}
+    .audio{
+      min-width:220px;
+      background:#0f172a;
+      color:#fff;
+      border-radius:18px;
+      padding:14px;
+      box-shadow:0 14px 30px rgba(15,23,42,.18);
+    }
+    .play{
+      display:flex;align-items:center;gap:10px;font-weight:850;margin-bottom:10px
+    }
+    .play-dot{
+      width:36px;height:36px;border-radius:50%;
+      background:#fff;color:#0f172a;display:grid;place-items:center;
+    }
+    .bar{height:7px;background:rgba(255,255,255,.2);border-radius:99px;overflow:hidden}
+    .bar span{display:block;height:100%;width:38%;background:#fff;border-radius:99px}
+    .grid-2{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}
+    .section{
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:18px;
+      padding:16px;
+    }
+    .section h3{margin:0 0 10px;font-size:16px}
+    .section p,.section li{color:#475569;font-size:14px;line-height:1.65}
+    ul{margin:8px 0 0;padding-left:20px}
+    .rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .rec{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:13px;
+      background:#f8fafc;
+    }
+    .rec strong{display:block;font-size:14px;margin-bottom:4px}
+    .rec span{font-size:12px;color:var(--muted)}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .action{
+      border:0;
+      border-radius:999px;
+      padding:11px 15px;
+      font-weight:850;
+      cursor:pointer;
+    }
+    .primary{background:var(--blue);color:#fff}
+    .secondary{background:#eef2ff;color:#3730a3}
+    .ghost{background:#f1f5f9;color:#334155}
+    .input-dock{
+      position:absolute;
+      left:0;right:0;bottom:0;
+      padding:18px 28px 24px;
+      background:linear-gradient(to top,#f8fafc 75%,rgba(248,250,252,0));
+    }
+    .input-wrap{
+      max-width:900px;
+      margin:0 auto;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:26px;
+      box-shadow:0 22px 60px rgba(15,23,42,.12);
+      padding:12px;
+      display:flex;
+      gap:10px;
+      align-items:flex-end;
+    }
+    textarea{
+      flex:1;border:0;outline:0;resize:none;
+      min-height:52px;max-height:120px;
+      font:inherit;font-size:16px;padding:14px;
+      color:var(--ink);
+    }
+    .send{
+      width:52px;height:52px;border:0;border-radius:18px;
+      background:var(--blue);color:#fff;
+      font-size:20px;font-weight:900;cursor:pointer;
+    }
+    .send:hover{background:var(--blue2)}
+    @media(max-width:900px){
+      .sidebar{display:none}
+      .menu-btn{display:inline-flex}
+      h1{font-size:34px}
+      .grid-2{grid-template-columns:1fr}
+      .answer-head{flex-direction:column}
+      .audio{width:100%}
+      .rec-grid{grid-template-columns:1fr}
+      .content{padding:12px 16px 150px}
+      .topbar{padding:12px 16px}
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="side-top">
+        <div class="brand-mini">Japan AI Guide</div>
+        <button class="new-chat">+ 新对话</button>
+      </div>
+      <div class="history-title">历史问题与答案</div>
+      <div class="history-list">
+        <div class="history-item" onclick="loadDemo('清水寺')">
+          <div class="history-q">清水寺有什么故事？</div>
+          <div class="history-a">中文讲解 · 附近美食 · 半日路线</div>
+        </div>
+        <div class="history-item" onclick="loadDemo('伏见稻荷大社')">
+          <div class="history-q">伏见稻荷为什么有狐狸？</div>
+          <div class="history-a">神社文化 · 千本鸟居 · 稻荷信仰</div>
+        </div>
+        <div class="history-item" onclick="loadDemo('京都美食')">
+          <div class="history-q">京都附近有什么美食？</div>
+          <div class="history-a">汤豆腐 · 京料理 · 抹茶甜品</div>
+        </div>
+        <div class="history-item" onclick="loadDemo('大阪一日游')">
+          <div class="history-q">大阪一日游怎么玩？</div>
+          <div class="history-a">大阪城 · 道顿堀 · 梅田夜景</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn">☰</button>
+        <div class="lang">
+          <span style="font-size:13px;color:var(--muted);font-weight:800;">Language</span>
+          <select>
+            <option>中文</option>
+            <option>English</option>
+            <option>日本語</option>
+            <option>한국어</option>
+            <option>ไทย</option>
+          </select>
+        </div>
+      </header>
+
+      <section class="content" id="content">
+        <div class="hero" id="hero">
+          <div class="logo"><div class="logo-mark">AI</div> Japan AI Guide</div>
+          <h1>用 AI 听懂日本</h1>
+          <div class="subtitle">像问 ChatGPT 一样，直接搜索景点、美食、历史、传说和路线。</div>
+          <div class="quick-grid">
+            <button class="quick" onclick="loadDemo('京都必去景点')">🏯 京都必去景点</button>
+            <button class="quick" onclick="loadDemo('大阪美食')">🍜 大阪美食</button>
+            <button class="quick" onclick="loadDemo('奈良小鹿为什么鞠躬')">🦌 奈良小鹿为什么鞠躬</button>
+            <button class="quick" onclick="loadDemo('清水寺')">⛩️ 清水寺</button>
+            <button class="quick" onclick="loadDemo('温泉礼仪')">♨️ 温泉礼仪</button>
+            <button class="quick" onclick="loadDemo('动漫圣地巡礼')">🎬 动漫圣地巡礼</button>
+          </div>
+        </div>
+
+        <div class="chat-stream" id="chatStream"></div>
+      </section>
+
+      <div class="input-dock">
+        <div class="input-wrap">
+          <textarea id="question" placeholder="问我任何日本旅行问题，例如：清水寺、京都下午半日路线、附近有什么美食……"></textarea>
+          <button class="send" onclick="ask()">↑</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const answers = {
+      "清水寺": {
+        title: "清水寺 Kiyomizu-dera",
+        place: "京都 · 东山区 · 寺院文化",
+        intro: "清水寺是京都最具代表性的寺院之一，以悬空木造舞台、音羽瀑布和四季景观闻名。它不仅是观光景点，也是日本人祈愿、参拜与感受京都精神的重要地方。",
+        story: "传说清水寺因音羽山的清泉而得名。寺内的音羽瀑布被认为象征长寿、学业与良缘。游客来到这里，不只是看建筑，更是在体验京都千年信仰与民间愿望的集合。",
+        points: ["清水舞台：俯瞰京都市区与樱花、红叶景色", "音羽瀑布：三道泉水代表不同祈愿", "二年坂/三年坂：适合步行、拍照和体验京都老街"],
+        food: ["汤豆腐", "抹茶甜品", "京料理", "和菓子咖啡"],
+        nearby: ["八坂神社", "高台寺", "祇园", "建仁寺"]
+      },
+      "京都必去景点": {
+        title: "京都必去景点推荐",
+        place: "京都 · 初次来日本 · 经典路线",
+        intro: "第一次来京都，可以优先选择清水寺、伏见稻荷大社、金阁寺、岚山、祇园这几个点。它们覆盖了寺院、神社、自然、老街和传统文化。",
+        story: "京都最适合用“主题路线”游览，而不是单纯打卡。比如上午清水寺体验寺院文化，下午去祇园看花街与町屋，傍晚去鸭川散步，游客会更容易理解京都的气质。",
+        points: ["清水寺 + 祇园：经典半日", "伏见稻荷 + 宇治：神社与抹茶", "岚山 + 竹林：自然与古寺"],
+        food: ["汤豆腐", "怀石料理", "抹茶甜品"],
+        nearby: ["清水寺", "伏见稻荷大社", "金阁寺", "岚山"]
+      },
+      "大阪美食": {
+        title: "大阪美食 AI 推荐",
+        place: "大阪 · 道顿堀 · 难波 · 梅田",
+        intro: "大阪被称为“天下厨房”，最适合边走边吃。推荐从道顿堀、黑门市场、新世界和梅田地下街开始。",
+        story: "大阪饮食文化更热闹、直接、接地气。章鱼烧、大阪烧、串炸不仅是食物，也是大阪商人文化和市井生活的一部分。",
+        points: ["道顿堀：招牌最密集，适合夜晚", "黑门市场：海鲜、小吃和游客路线", "新世界：串炸与昭和风情"],
+        food: ["章鱼烧", "大阪烧", "串炸", "拉面"],
+        nearby: ["道顿堀", "心斋桥", "通天阁", "梅田蓝天大厦"]
+      },
+      "奈良小鹿为什么鞠躬": {
+        title: "奈良小鹿为什么会鞠躬？",
+        place: "奈良 · 春日大社 · 鹿文化",
+        intro: "奈良公园的小鹿会对游客点头，很多人称为“鞠躬”。这通常是小鹿向游客索要鹿仙贝时形成的互动行为。",
+        story: "在奈良传统中，鹿被视为神的使者，与春日大社信仰有关。所以奈良的鹿不是普通动物观光项目，而是地方信仰、城市文化和游客体验结合的象征。",
+        points: ["不要逗鹿或把食物藏起来", "喂食后双手摊开表示没有了", "不要靠近幼鹿或追逐鹿群"],
+        food: ["柿叶寿司", "奈良渍", "和菓子"],
+        nearby: ["东大寺", "春日大社", "若草山", "兴福寺"]
+      }
+    };
+
+    function ask(){
+      const q = document.getElementById("question").value.trim();
+      if(!q) return;
+      loadDemo(q);
+      document.getElementById("question").value = "";
+    }
+
+    function loadDemo(q){
+      document.getElementById("hero").style.display = "none";
+      const data = answers[q] || {
+        title: q,
+        place: "AI 日本导览 · 智能推荐",
+        intro: "我会先判断你问的是景点、美食、路线、文化还是交通问题。如果知识库里已有内容，就优先返回预生成讲解；如果没有，再用 AI 实时生成简短答案。",
+        story: "这个回答会被保存到左侧历史记录中。后续可以继续追问、生成路线、播放音频，或者把推荐加入行程。",
+        points: ["返回文字讲解", "生成音频播放器", "推荐附近景点、美食、酒店", "支持继续追问"],
+        food: ["附近美食推荐", "当地特色", "适合游客的餐厅类型"],
+        nearby: ["附近景点", "推荐路线", "可收藏行程"]
+      };
+      const stream = document.getElementById("chatStream");
+      stream.innerHTML = `
+        <div class="user-msg">${escapeHtml(q)}</div>
+        <article class="answer-card">
+          <div class="answer-head">
+            <div>
+              <div class="tag">✨ AI 导览卡片</div>
+              <h2 class="answer-title">${data.title}</h2>
+              <div class="answer-sub">${data.place}</div>
+            </div>
+            <div class="audio">
+              <div class="play"><div class="play-dot">▶</div><div>中文讲解 · 3分钟版</div></div>
+              <div class="bar"><span></span></div>
+              <div style="font-size:12px;color:rgba(255,255,255,.72);margin-top:8px;">音频建议预生成并缓存，降低 token 与 TTS 成本</div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="section">
+              <h3>文字讲解</h3>
+              <p>${data.intro}</p>
+              <p>${data.story}</p>
+            </div>
+            <div class="section">
+              <h3>参观重点</h3>
+              <ul>${data.points.map(x=>`<li>${x}</li>`).join("")}</ul>
+            </div>
+          </div>
+
+          <div class="rec-grid">
+            <div class="rec"><strong>📍 附近景点</strong><span>${data.nearby.join(" · ")}</span></div>
+            <div class="rec"><strong>🍜 附近美食</strong><span>${data.food.join(" · ")}</span></div>
+            <div class="rec"><strong>🏨 附近酒店</strong><span>后期可接酒店/OTA/广告位</span></div>
+          </div>
+
+          <div class="actions">
+            <button class="action primary">生成半日路线</button>
+            <button class="action secondary">加入我的行程</button>
+            <button class="action ghost">查看地图</button>
+            <button class="action ghost">继续追问</button>
+          </div>
+        </article>
+      `;
+      stream.scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    function escapeHtml(text){
+      return text.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
+  </script>
+</body>
+</html>

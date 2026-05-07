@@ -1,0 +1,20 @@
+{
+  "id": "spot_fushimi_inari",
+  "slug": "fushimi_inari",
+  "title": "伏见稻荷大社",
+  "subtitle": "京都 · 伏见区",
+  "description": "伏见稻荷大社以千本鸟居闻名，是理解稻荷信仰与日本神社文化的代表地点。",
+  "story": "清晨前往伏见稻荷大社，可以避开人流并体验更安静的参拜氛围。鸟居沿山路延伸，行程可根据体力选择短程或登山版本。",
+  "tags": ["京都", "神社", "鸟居", "伏见"],
+  "nearby": [
+    {"name": "稻荷站", "type": "station", "distance_text": "步行约2分钟", "description": "JR 奈良线车站。", "source": "database"}
+  ],
+  "foods": [
+    {"name": "稻荷寿司", "area": "伏见", "description": "与稻荷信仰相关的经典食物。", "source": "database"}
+  ],
+  "hotels": [
+    {"name": "京都站周边酒店", "area": "京都站", "description": "前往伏见稻荷交通便利。", "source": "database"}
+  ],
+  "source": "content_library",
+  "language": "zh"
+}

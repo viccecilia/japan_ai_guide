@@ -1,0 +1,25 @@
+{
+  "id": "city_kyoto",
+  "slug": "kyoto_city",
+  "content_type": "city",
+  "title": "京都",
+  "subtitle": "关西 · 古都与文化核心",
+  "description": "京都适合第一次来日本的游客慢慢体验寺院、街区、美食和四季景观。",
+  "story": "可以把京都理解为多个步行片区的组合：东山看寺院和坡道，岚山看自然，祇园看传统街区，京都站负责交通换乘。",
+  "aliases": ["京都市", "京都旅行", "京都怎么玩"],
+  "tags": ["京都", "城市", "寺院", "美食", "住宿", "路线"],
+  "nearby": [
+    {"name": "清水寺", "type": "spot", "distance_text": "东山区域", "description": "京都代表性寺院。", "source": "database"},
+    {"name": "伏见稻荷大社", "type": "spot", "distance_text": "伏见区域", "description": "千本鸟居路线。", "source": "database"}
+  ],
+  "foods": [
+    {"name": "抹茶甜点", "area": "东山 / 宇治", "description": "适合穿插在景点路线中。", "source": "database"}
+  ],
+  "hotels": [
+    {"name": "京都站周边酒店", "area": "京都站", "description": "交通方便。", "source": "database"}
+  ],
+  "priority": 95,
+  "updated_at": "2026-05-06",
+  "source": "content_library",
+  "language": "zh"
+}

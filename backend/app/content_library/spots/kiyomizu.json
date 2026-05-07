@@ -1,0 +1,62 @@
+{
+  "id": "spot_kiyomizu",
+  "slug": "kiyomizu",
+  "content_type": "spot",
+  "title": "清水寺",
+  "subtitle": "京都 · 东山区",
+  "description": "清水寺是京都东山最具代表性的寺院之一，以木造舞台、坡道街区和四季景观闻名。",
+  "story": "第一次到京都，可以把清水寺作为理解东山区域的起点。沿着二年坂、三年坂慢慢步行，能同时看到寺院文化、传统街区和京都城市景观。",
+  "aliases": [
+    "???",
+    "?????",
+    "?????"
+  ],
+  "tags": [
+    "京都",
+    "寺院",
+    "东山",
+    "经典景点"
+  ],
+  "nearby": [
+    {
+      "name": "二年坂",
+      "type": "spot",
+      "distance_text": "步行约8分钟",
+      "description": "石板坡道与伴手礼街区。",
+      "source": "database"
+    },
+    {
+      "name": "八坂神社",
+      "type": "spot",
+      "distance_text": "步行约18分钟",
+      "description": "祇园一带的重要神社。",
+      "source": "database"
+    }
+  ],
+  "foods": [
+    {
+      "name": "抹茶甜点",
+      "area": "东山",
+      "description": "适合与清水寺路线组合。",
+      "source": "database"
+    },
+    {
+      "name": "汤豆腐",
+      "area": "京都",
+      "description": "京都传统轻食。",
+      "source": "database"
+    }
+  ],
+  "hotels": [
+    {
+      "name": "京都站周边酒店",
+      "area": "京都站",
+      "description": "交通方便，适合首次到访。",
+      "source": "database"
+    }
+  ],
+  "source": "content_library",
+  "language": "zh",
+  "priority": 90,
+  "updated_at": "2026-05-06"
+}

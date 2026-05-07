@@ -1,0 +1,47 @@
+.jag-multi-card-flow {
+  display: grid;
+  gap: 1rem;
+}
+
+.jag-related-flow {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(14rem, 1fr);
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.jag-related-card,
+.jag-section-card {
+  border: 1px solid var(--jag-color-line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--jag-shadow-sm);
+}
+
+.jag-related-card {
+  min-height: 10rem;
+  padding: 1rem;
+}
+
+.jag-recommendation-section {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.jag-section-title {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--jag-color-ink);
+}
+
+.jag-section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.75rem;
+}
+
+.jag-section-card {
+  padding: 0.875rem;
+}

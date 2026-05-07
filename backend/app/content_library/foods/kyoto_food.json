@@ -1,0 +1,46 @@
+{
+  "id": "food_kyoto",
+  "slug": "kyoto_food",
+  "content_type": "food",
+  "title": "京都美食",
+  "subtitle": "京都 · 经典食物",
+  "description": "京都美食适合从京料理、汤豆腐、抹茶甜点和传统茶屋开始了解。",
+  "story": "第一次到京都，不必只追网红店。可以把美食安排到景点路线中：东山适合抹茶甜点，岚山适合汤豆腐，市中心适合寻找京料理和居酒屋。",
+  "aliases": [
+    "????",
+    "?????",
+    "????"
+  ],
+  "tags": [
+    "京都",
+    "美食",
+    "抹茶",
+    "京料理"
+  ],
+  "nearby": [],
+  "foods": [
+    {
+      "name": "京料理",
+      "area": "祇园",
+      "description": "重视季节感和摆盘。",
+      "source": "database"
+    },
+    {
+      "name": "汤豆腐",
+      "area": "南禅寺 / 岚山",
+      "description": "京都代表性轻食。",
+      "source": "database"
+    },
+    {
+      "name": "抹茶甜点",
+      "area": "东山 / 宇治",
+      "description": "适合下午茶。",
+      "source": "database"
+    }
+  ],
+  "hotels": [],
+  "source": "content_library",
+  "language": "zh",
+  "priority": 80,
+  "updated_at": "2026-05-06"
+}

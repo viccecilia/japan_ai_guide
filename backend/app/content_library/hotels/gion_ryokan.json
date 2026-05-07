@@ -1,0 +1,20 @@
+{
+  "id": "hotel_gion_ryokan",
+  "slug": "gion_ryokan",
+  "content_type": "hotel",
+  "title": "祇园旅馆",
+  "subtitle": "京都 · 传统街区体验",
+  "description": "祇园和东山一带适合想体验传统街区、夜间散步和京都氛围的游客。",
+  "story": "住在祇园附近，晚上散步体验更好，去清水寺、八坂神社也方便。缺点是价格通常更高，带大件行李移动不如京都站轻松。",
+  "aliases": ["祇园住宿", "京都旅馆", "京都传统旅馆", "东山住宿"],
+  "tags": ["京都", "住宿", "旅馆", "祇园", "东山"],
+  "nearby": [],
+  "foods": [],
+  "hotels": [
+    {"name": "祇园传统旅馆", "area": "祇园", "description": "适合体验京都氛围。", "source": "database"}
+  ],
+  "priority": 83,
+  "updated_at": "2026-05-06",
+  "source": "content_library",
+  "language": "zh"
+}

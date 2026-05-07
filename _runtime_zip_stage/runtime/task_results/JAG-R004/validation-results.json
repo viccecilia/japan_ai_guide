@@ -1,0 +1,8 @@
+{
+  "backendReturnsCardType": true,
+  "backendHasFourSpotMocks": true,
+  "allCardTypesCovered": true,
+  "frontendTypeDefinesEnum": true,
+  "rendererHandlesMissingFields": true,
+  "chineseContentOk": true
+}

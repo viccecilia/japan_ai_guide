@@ -1,0 +1,33 @@
+{
+  "round_id": "JAG-R006",
+  "frontend_url": "http://127.0.0.1:3000",
+  "backend_url": "http://127.0.0.1:8000",
+  "checks": {
+    "frontend_dev_server": true,
+    "backend_health": true,
+    "frontend_lint": true,
+    "frontend_build": true,
+    "welcome_empty": true,
+    "three_questions": true,
+    "history_three": true,
+    "history_restore": true,
+    "enter_send": true,
+    "shift_enter_newline": true,
+    "shift_enter_no_submit": true,
+    "loading_visible": true,
+    "streaming_visible": true,
+    "error_visible": true,
+    "mobile_layout": true
+  },
+  "artifacts": {
+    "browser_validation": "runtime/task_results/JAG-R006/browser-validation.json",
+    "desktop_history_restore": "runtime/task_results/JAG-R006/desktop-history-restore.png",
+    "mobile_chat": "runtime/task_results/JAG-R006/mobile-chat.png",
+    "error_state": "runtime/task_results/JAG-R006/error-state.png"
+  },
+  "mock_notes": [
+    "Streaming is simulated in the frontend.",
+    "History is stored only in current React memory.",
+    "No real AI, database, TTS, map, or charter-car feature was added."
+  ]
+}

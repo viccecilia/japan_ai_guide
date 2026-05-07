@@ -1,0 +1,20 @@
+{
+  "id": "route_kyoto_half_day",
+  "slug": "kyoto_half_day",
+  "content_type": "route",
+  "title": "京都半日游",
+  "subtitle": "清水寺 · 二年坂 · 祇园",
+  "description": "适合时间有限的游客，用半天体验京都东山的经典步行路线。",
+  "story": "建议从清水寺开始，沿二年坂、三年坂下行，再走到八坂神社和祇园。路线紧凑，但不需要频繁换乘。",
+  "aliases": ["京都半日路线", "京都半日怎么玩", "东山半日游"],
+  "tags": ["京都", "路线", "半日游", "清水寺", "祇园"],
+  "nearby": [],
+  "foods": [
+    {"name": "抹茶甜点", "area": "东山", "description": "适合作为路线休息点。", "source": "database"}
+  ],
+  "hotels": [],
+  "priority": 82,
+  "updated_at": "2026-05-06",
+  "source": "content_library",
+  "language": "zh"
+}

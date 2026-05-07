@@ -1,0 +1,41 @@
+:root {
+  --jag-color-page: #f5f7fb;
+  --jag-color-page-soft: #eef5ff;
+  --jag-color-surface: #ffffff;
+  --jag-color-surface-muted: #f8fafc;
+  --jag-color-ink: #0f172a;
+  --jag-color-ink-soft: #334155;
+  --jag-color-muted: #64748b;
+  --jag-color-line: #e2e8f0;
+  --jag-color-primary: #2563eb;
+  --jag-color-primary-strong: #1d4ed8;
+  --jag-color-primary-soft: #eff6ff;
+  --jag-color-audio: #020617;
+
+  --jag-font-sans: Arial, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --jag-font-size-xs: 0.75rem;
+  --jag-font-size-sm: 0.875rem;
+  --jag-font-size-md: 1rem;
+  --jag-font-size-lg: 1.125rem;
+  --jag-font-size-xl: 1.5rem;
+  --jag-font-size-hero: 3rem;
+
+  --jag-radius-sm: 0.75rem;
+  --jag-radius-md: 1rem;
+  --jag-radius-lg: 1.375rem;
+  --jag-radius-pill: 999px;
+
+  --jag-shadow-sm: 0 8px 20px rgba(15, 23, 42, 0.05);
+  --jag-shadow-md: 0 14px 32px rgba(15, 23, 42, 0.08);
+  --jag-shadow-lg: 0 18px 45px rgba(15, 23, 42, 0.1);
+  --jag-shadow-primary: 0 12px 28px rgba(37, 99, 235, 0.22);
+
+  --jag-space-1: 0.25rem;
+  --jag-space-2: 0.5rem;
+  --jag-space-3: 0.75rem;
+  --jag-space-4: 1rem;
+  --jag-space-5: 1.25rem;
+  --jag-space-6: 1.5rem;
+  --jag-space-8: 2rem;
+  --jag-space-10: 2.5rem;
+}

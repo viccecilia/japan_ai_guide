@@ -1,0 +1,13 @@
+{
+  "welcome_empty": true,
+  "shift_enter_newline": true,
+  "shift_enter_no_submit": true,
+  "loading_visible": true,
+  "streaming_visible": true,
+  "enter_send": true,
+  "three_questions": true,
+  "history_three": true,
+  "history_restore": true,
+  "mobile_layout": true,
+  "error_visible": true
+}

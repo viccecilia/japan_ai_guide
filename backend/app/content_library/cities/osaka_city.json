@@ -1,0 +1,22 @@
+{
+  "id": "city_osaka",
+  "slug": "osaka_city",
+  "content_type": "city",
+  "title": "大阪",
+  "subtitle": "关西 · 美食与城市玩法",
+  "description": "大阪适合安排美食、购物、城市夜景和大阪城等经典景点。",
+  "story": "第一次到大阪，可以用难波、心斋桥、大阪城和梅田构成一日城市路线。",
+  "aliases": ["大阪市", "大阪旅行", "大阪怎么玩"],
+  "tags": ["大阪", "城市", "美食", "购物", "路线"],
+  "nearby": [
+    {"name": "大阪城", "type": "spot", "distance_text": "市区", "description": "大阪代表性历史景点。", "source": "database"}
+  ],
+  "foods": [
+    {"name": "章鱼烧", "area": "难波", "description": "大阪代表小吃。", "source": "database"}
+  ],
+  "hotels": [],
+  "priority": 90,
+  "updated_at": "2026-05-06",
+  "source": "content_library",
+  "language": "zh"
+}

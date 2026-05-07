@@ -1,0 +1,20 @@
+{
+  "id": "hotel_kyoto_station",
+  "slug": "kyoto_station_hotels",
+  "content_type": "hotel",
+  "title": "京都站周边住宿",
+  "subtitle": "京都 · 交通优先",
+  "description": "京都站周边适合第一次来京都、行李多或需要频繁换乘的游客。",
+  "story": "住在京都站附近的优势是新干线、JR、巴士和地铁都方便。缺点是传统街区氛围不如东山和祇园，但执行行程的效率更高。",
+  "aliases": ["京都住宿", "京都酒店", "京都站酒店", "京都附近酒店"],
+  "tags": ["京都", "住宿", "酒店", "京都站", "交通"],
+  "nearby": [],
+  "foods": [],
+  "hotels": [
+    {"name": "京都站周边酒店", "area": "京都站", "description": "交通方便，适合首次到访。", "source": "database"}
+  ],
+  "priority": 91,
+  "updated_at": "2026-05-06",
+  "source": "content_library",
+  "language": "zh"
+}

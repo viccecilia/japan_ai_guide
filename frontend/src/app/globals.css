@@ -1,0 +1,106 @@
+@import "../../styles/tokens.css";
+@import "../../styles/multi-card.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--jag-color-page);
+  color: var(--jag-color-ink);
+  font-family: var(--jag-font-sans);
+}
+
+button,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+select {
+  cursor: pointer;
+}
+
+textarea {
+  cursor: text;
+}
+
+@layer components {
+  .jag-page {
+    @apply h-screen min-h-screen overflow-hidden text-slate-950;
+    background: radial-gradient(
+      circle at top,
+      var(--jag-color-page-soft) 0,
+      var(--jag-color-surface-muted) 42%,
+      var(--jag-color-page) 100%
+    );
+  }
+
+  .jag-sidebar {
+    @apply hidden w-80 shrink-0 border-r p-5 shadow-sm backdrop-blur lg:flex lg:flex-col;
+    background: rgba(255, 255, 255, 0.82);
+    border-color: var(--jag-color-line);
+  }
+
+  .jag-card {
+    @apply w-full overflow-hidden border bg-white/95 p-5 sm:p-6;
+    border-color: var(--jag-color-line);
+    border-radius: var(--jag-radius-lg);
+    box-shadow: var(--jag-shadow-lg);
+  }
+
+  .jag-panel {
+    @apply border bg-slate-50 p-4;
+    border-color: var(--jag-color-line);
+    border-radius: var(--jag-radius-md);
+  }
+
+  .jag-button-primary {
+    @apply font-bold text-white transition hover:bg-blue-700;
+    background: var(--jag-color-primary);
+    border-radius: var(--jag-radius-pill);
+    box-shadow: var(--jag-shadow-primary);
+  }
+
+  .jag-button-secondary {
+    @apply border bg-white font-bold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700;
+    border-color: var(--jag-color-line);
+    border-radius: var(--jag-radius-pill);
+    box-shadow: var(--jag-shadow-sm);
+  }
+
+  .jag-button-compact {
+    @apply border bg-white px-3 py-2 text-sm font-bold transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700;
+    border-color: var(--jag-color-line);
+    border-radius: var(--jag-radius-sm);
+    box-shadow: var(--jag-shadow-sm);
+  }
+
+  .jag-input-shell {
+    @apply mx-auto flex max-w-4xl items-end gap-3 border bg-white p-3;
+    border-color: var(--jag-color-line);
+    border-radius: var(--jag-radius-lg);
+    box-shadow: var(--jag-shadow-lg);
+  }
+
+  .jag-answer-badge {
+    @apply mb-2 inline-flex px-3 py-1 text-xs font-bold text-blue-700;
+    background: var(--jag-color-primary-soft);
+    border-radius: var(--jag-radius-pill);
+  }
+}

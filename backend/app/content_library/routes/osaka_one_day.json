@@ -1,0 +1,20 @@
+{
+  "id": "route_osaka_one_day",
+  "slug": "osaka_one_day",
+  "content_type": "route",
+  "title": "大阪一日游",
+  "subtitle": "大阪城 · 难波 · 道顿堀",
+  "description": "适合第一次到大阪的城市一日游，兼顾历史景点、美食和夜景。",
+  "story": "白天可以先去大阪城，下午转到心斋桥和难波，晚上把道顿堀作为收尾。",
+  "aliases": ["大阪一日路线", "大阪一天怎么玩", "大阪经典路线"],
+  "tags": ["大阪", "路线", "一日游", "大阪城", "美食"],
+  "nearby": [],
+  "foods": [
+    {"name": "章鱼烧", "area": "道顿堀", "description": "大阪代表小吃。", "source": "database"}
+  ],
+  "hotels": [],
+  "priority": 84,
+  "updated_at": "2026-05-06",
+  "source": "content_library",
+  "language": "zh"
+}

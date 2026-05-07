@@ -1,0 +1,30 @@
+{
+  "round_id": "JAG-R005",
+  "frontend_url": "http://127.0.0.1:3000",
+  "backend_url": "http://127.0.0.1:8000",
+  "checks": {
+    "backend_health": true,
+    "api_chat_query": true,
+    "frontend_lint": true,
+    "frontend_build": true,
+    "backend_ast_syntax": true,
+    "browser_query_kiyomizu": true,
+    "browser_query_osaka": true,
+    "browser_query_generic": true,
+    "browser_quick_button": true,
+    "browser_mobile_layout": true,
+    "browser_error_state": true
+  },
+  "artifacts": {
+    "api_samples": "runtime/task_results/JAG-R005/api-samples.json",
+    "desktop_screenshot": "runtime/task_results/JAG-R005/desktop-1440.png",
+    "mobile_screenshot": "runtime/task_results/JAG-R005/mobile-500.png",
+    "error_screenshot": "runtime/task_results/JAG-R005/error-state.png",
+    "frontend_log": "runtime/task_results/JAG-R005/frontend-dev.stdout.log",
+    "backend_log": "runtime/task_results/JAG-R005/backend-dev.stderr.log"
+  },
+  "notes": [
+    "Error state was validated by aborting the browser request to /api/chat/query, equivalent to a network/backend disconnect from the frontend perspective.",
+    "No real AI, database, map, TTS, or login integration was added."
+  ]
+}

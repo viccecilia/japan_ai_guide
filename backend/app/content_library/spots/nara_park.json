@@ -1,0 +1,21 @@
+{
+  "id": "spot_nara_park",
+  "slug": "nara_park",
+  "title": "奈良公园",
+  "subtitle": "奈良 · 奈良市",
+  "description": "奈良公园以自由活动的鹿群、东大寺和春日大社周边步行路线闻名。",
+  "story": "奈良公园适合安排轻松的一日游。游客需要注意与鹿互动的距离和喂食方式，也可以顺路参观东大寺和春日大社。",
+  "tags": ["奈良", "公园", "鹿", "一日游"],
+  "nearby": [
+    {"name": "东大寺", "type": "spot", "distance_text": "步行约10分钟", "description": "奈良代表性寺院。", "source": "database"},
+    {"name": "春日大社", "type": "spot", "distance_text": "步行约18分钟", "description": "奈良重要神社。", "source": "database"}
+  ],
+  "foods": [
+    {"name": "柿叶寿司", "area": "奈良", "description": "奈良地方料理。", "source": "database"}
+  ],
+  "hotels": [
+    {"name": "近铁奈良站周边酒店", "area": "奈良", "description": "适合步行游览奈良公园。", "source": "database"}
+  ],
+  "source": "content_library",
+  "language": "zh"
+}

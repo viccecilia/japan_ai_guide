@@ -1,0 +1,258 @@
+[
+  {
+    "status": 200,
+    "question": "清水寺",
+    "card_type": "spot_card",
+    "title": "清水寺 Kiyomizu-dera",
+    "response": {
+      "ok": true,
+      "data": {
+        "question": "清水寺",
+        "answer_card": {
+          "id": "spot_kiyomizu",
+          "card_type": "spot_card",
+          "title": "清水寺 Kiyomizu-dera",
+          "subtitle": "京都 · 寺院文化 · 半日路线",
+          "summary": "京都代表性寺院，适合第一次来京都的游客理解寺院文化和东山路线。",
+          "sections": [
+            {
+              "title": "景点讲解",
+              "body": "清水寺以木造舞台和东山景观闻名，是京都最具代表性的寺院之一。",
+              "source": "ai"
+            },
+            {
+              "title": "参观建议",
+              "body": "建议与二年坂、三年坂、八坂神社、祇园组合成半日路线。",
+              "source": "computed"
+            }
+          ],
+          "highlights": [
+            "木造舞台",
+            "东山散步",
+            "寺院文化",
+            "春樱秋枫"
+          ],
+          "recommendations": [
+            {
+              "title": "附近景点",
+              "items": [
+                "八坂神社",
+                "高台寺",
+                "祇园"
+              ],
+              "source": "database"
+            },
+            {
+              "title": "附近美食",
+              "items": [
+                "抹茶甜点",
+                "京料理",
+                "汤豆腐"
+              ],
+              "source": "database"
+            }
+          ],
+          "actions": [
+            {
+              "label": "生成半日路线",
+              "action": "create_route",
+              "enabled": true,
+              "source": "computed"
+            },
+            {
+              "label": "加入行程",
+              "action": "save_to_trip",
+              "enabled": false,
+              "source": "mock"
+            },
+            {
+              "label": "查看地图",
+              "action": "open_map",
+              "enabled": false,
+              "source": "mock"
+            }
+          ],
+          "meta": {
+            "language": "zh-CN",
+            "mock": true,
+            "sources": [
+              "mock"
+            ]
+          }
+        }
+      },
+      "error": null,
+      "meta": {
+        "mock": true,
+        "language": "zh-CN"
+      }
+    }
+  },
+  {
+    "status": 200,
+    "question": "大阪城",
+    "card_type": "spot_card",
+    "title": "大阪城 Osaka Castle",
+    "response": {
+      "ok": true,
+      "data": {
+        "question": "大阪城",
+        "answer_card": {
+          "id": "spot_osaka_castle",
+          "card_type": "spot_card",
+          "title": "大阪城 Osaka Castle",
+          "subtitle": "大阪 · 城郭历史 · 城公园",
+          "summary": "大阪的历史地标，适合了解丰臣秀吉、大阪城公园和城市历史。",
+          "sections": [
+            {
+              "title": "历史线索",
+              "body": "大阪城与战国、丰臣政权和江户时代政治变迁密切相关。",
+              "source": "ai"
+            }
+          ],
+          "highlights": [
+            "天守阁",
+            "大阪城公园",
+            "历史展览",
+            "樱花季"
+          ],
+          "recommendations": [
+            {
+              "title": "附近组合",
+              "items": [
+                "大阪历史博物馆",
+                "梅田",
+                "道顿堀"
+              ],
+              "source": "database"
+            }
+          ],
+          "actions": [
+            {
+              "label": "生成大阪一日游",
+              "action": "create_route",
+              "enabled": true,
+              "source": "computed"
+            }
+          ],
+          "meta": {
+            "language": "zh-CN",
+            "mock": true,
+            "sources": [
+              "mock"
+            ]
+          }
+        }
+      },
+      "error": null,
+      "meta": {
+        "mock": true,
+        "language": "zh-CN"
+      }
+    }
+  },
+  {
+    "status": 200,
+    "question": "伏见稻荷大社",
+    "card_type": "spot_card",
+    "title": "伏见稻荷大社 Fushimi Inari Taisha",
+    "response": {
+      "ok": true,
+      "data": {
+        "question": "伏见稻荷大社",
+        "answer_card": {
+          "id": "spot_fushimi_inari",
+          "card_type": "spot_card",
+          "title": "伏见稻荷大社 Fushimi Inari Taisha",
+          "subtitle": "京都 · 神社文化 · 千本鸟居",
+          "summary": "以红色鸟居参道闻名，适合理解稻荷信仰和日本神社文化。",
+          "sections": [
+            {
+              "title": "文化背景",
+              "body": "伏见稻荷大社供奉稻荷神，鸟居来自信众奉纳，形成连续的山道景观。",
+              "source": "ai"
+            }
+          ],
+          "highlights": [
+            "千本鸟居",
+            "稻荷信仰",
+            "山道参拜",
+            "摄影热门"
+          ],
+          "recommendations": [
+            {
+              "title": "路线建议",
+              "items": [
+                "京都站",
+                "伏见稻荷",
+                "东福寺"
+              ],
+              "source": "computed"
+            }
+          ],
+          "actions": [
+            {
+              "label": "继续追问",
+              "action": "ask_followup",
+              "enabled": true,
+              "source": "mock"
+            }
+          ],
+          "meta": {
+            "language": "zh-CN",
+            "mock": true,
+            "sources": [
+              "mock"
+            ]
+          }
+        }
+      },
+      "error": null,
+      "meta": {
+        "mock": true,
+        "language": "zh-CN"
+      }
+    }
+  },
+  {
+    "status": 200,
+    "question": "未知问题",
+    "card_type": "generic_card",
+    "title": "日本旅行问题",
+    "response": {
+      "ok": true,
+      "data": {
+        "question": "未知问题",
+        "answer_card": {
+          "id": "generic_fallback",
+          "card_type": "generic_card",
+          "title": "日本旅行问题",
+          "subtitle": null,
+          "summary": "这是通用回答卡片，用于缺少明确类型时兜底展示。",
+          "sections": [
+            {
+              "title": "提示",
+              "body": "请继续输入景点、城市、美食、路线或文化问题。",
+              "source": "mock"
+            }
+          ],
+          "highlights": [],
+          "recommendations": [],
+          "actions": [],
+          "meta": {
+            "language": "zh-CN",
+            "mock": true,
+            "sources": [
+              "mock"
+            ]
+          }
+        }
+      },
+      "error": null,
+      "meta": {
+        "mock": true,
+        "language": "zh-CN"
+      }
+    }
+  }
+]
