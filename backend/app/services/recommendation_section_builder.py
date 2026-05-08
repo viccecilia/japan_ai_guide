@@ -1,29 +1,56 @@
-from collections import defaultdict
-
-from app.schemas.multi_card_response import RecommendationSection, RelatedAnswerCard
-
-
-SECTION_TITLES = {
-    "spot": ("recommended_spots", "推荐景点"),
-    "route": ("recommended_routes", "推荐路线"),
-    "food": ("recommended_foods", "推荐美食"),
-    "culture": ("recommended_culture", "推荐文化"),
-    "hotel": ("recommended_hotels", "推荐住宿"),
-}
+from app.schemas.multi_card_response import RecommendationSection
+from app.schemas.recommendation_orchestration import RecommendationPlan
+from app.services.recommendation_rules import SECTION_NARRATIVES, SECTION_TITLES
+from app.services.related_card_builder import build_related_card_from_candidate
 
 
-def build_recommendation_sections(cards: list[RelatedAnswerCard]) -> list[RecommendationSection]:
-    grouped: dict[str, list[RelatedAnswerCard]] = defaultdict(list)
-    for card in cards:
-        content_type = str(card.metadata.ranking.get("content_type") or "")
-        if content_type in SECTION_TITLES:
-            grouped[content_type].append(card)
-
+def build_recommendation_sections(plan: RecommendationPlan, language: str) -> list[RecommendationSection]:
     sections: list[RecommendationSection] = []
-    for content_type in ["spot", "route", "food", "culture", "hotel"]:
-        cards_for_type = grouped.get(content_type, [])
-        if not cards_for_type:
+
+    if plan.suggested_prompts:
+        sections.append(
+            RecommendationSection(
+                section_type="suggested_prompts",
+                title=SECTION_TITLES["suggested_prompts"],
+                section_intro=SECTION_NARRATIVES["suggested_prompts"]["intro"],
+                section_narrative=SECTION_NARRATIVES["suggested_prompts"]["narrative"],
+                cards=[],
+                prompts=plan.suggested_prompts,
+            )
+        )
+        return sections
+
+    for section_type in plan.section_order:
+        candidates = plan.section_candidates.get(section_type, [])
+        if not candidates:
             continue
-        section_type, title = SECTION_TITLES[content_type]
-        sections.append(RecommendationSection(section_type=section_type, title=title, cards=cards_for_type))
+        cards = [
+            card
+            for index, candidate in enumerate(candidates)
+            if (card := build_related_card_from_candidate(candidate, language, index)) is not None
+        ]
+        if not cards:
+            continue
+        sections.append(
+            RecommendationSection(
+                section_type=section_type,
+                title=SECTION_TITLES.get(section_type, section_type),
+                section_intro=SECTION_NARRATIVES.get(section_type, {}).get("intro"),
+                section_narrative=SECTION_NARRATIVES.get(section_type, {}).get("narrative"),
+                cards=cards,
+            )
+        )
     return sections
+
+
+def build_itinerary_section(itineraries: list[object]) -> RecommendationSection | None:
+    if not itineraries:
+        return None
+    return RecommendationSection(
+        section_type="itinerary_section",
+        title="AI 行程流",
+        section_intro="我把上面的回答和推荐内容，整理成一条可以直接参考的旅行路线。",
+        section_narrative="当前路线按顺路、节奏和体验密度启发式编排；还没有接真实地图和实时交通。",
+        cards=[],
+        itineraries=itineraries,
+    )

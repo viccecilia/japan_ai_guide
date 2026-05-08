@@ -4,12 +4,12 @@ type QuickQuestionButtonsProps = {
 };
 
 const quickQuestions = [
-  "清水寺",
-  "大阪城",
-  "伏见稻荷大社",
-  "奈良公园",
-  "神社和寺庙区别",
-  "第一次来日本怎么玩",
+  "清水寺有什么故事？",
+  "大阪一日游怎么安排？",
+  "伏见稻荷大社怎么玩？",
+  "奈良公园适合半日游吗？",
+  "神社和寺庙有什么区别？",
+  "第一次来日本怎么玩？",
 ];
 
 export function QuickQuestionButtons({ isLoading, onSelect }: QuickQuestionButtonsProps) {
@@ -18,7 +18,7 @@ export function QuickQuestionButtons({ isLoading, onSelect }: QuickQuestionButto
       {quickQuestions.map((question) => (
         <button
           key={question}
-          className="jag-button-secondary min-w-0 max-w-[calc(100vw-2rem)] whitespace-normal break-all px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-60 sm:break-words"
+          className="jag-button-secondary min-w-0 max-w-[calc(100vw-2rem)] whitespace-normal break-words px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-60"
           type="button"
           disabled={isLoading}
           onClick={() => onSelect(question)}

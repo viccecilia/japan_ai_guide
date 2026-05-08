@@ -72,6 +72,7 @@ class AnswerCardMetadata(BaseModel):
     ranking: dict[str, str | bool | int | float | None] = Field(default_factory=dict)
     related_candidates: list[dict[str, str | bool | int | float | None]] = Field(default_factory=list)
     card_groups: dict[str, int] = Field(default_factory=dict)
+    orchestration: dict[str, object] = Field(default_factory=dict)
 
 
 class AnswerCard(BaseModel):

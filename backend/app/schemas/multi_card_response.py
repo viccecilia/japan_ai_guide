@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 
 from app.schemas.answer_card import AnswerCard
+from app.schemas.itinerary import Itinerary
 
 
 class MainAnswerCard(AnswerCard):
@@ -18,7 +19,11 @@ class RelatedAnswerCard(AnswerCard):
 class RecommendationSection(BaseModel):
     section_type: str
     title: str
+    section_intro: str | None = None
+    section_narrative: str | None = None
     cards: list[RelatedAnswerCard] = Field(default_factory=list)
+    prompts: list[str] = Field(default_factory=list)
+    itineraries: list[Itinerary] = Field(default_factory=list)
 
 
 class MultiCardResponse(BaseModel):

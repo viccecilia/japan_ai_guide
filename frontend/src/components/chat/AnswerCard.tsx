@@ -1,16 +1,17 @@
 import type { AnswerCard as AnswerCardData, AnswerCardType } from "../../../types/answer_card";
+import { canShowInternalDebug } from "../../lib/frontendMode";
 
 type AnswerCardProps = {
   card?: Partial<AnswerCardData>;
 };
 
 const cardTypeLabels: Record<AnswerCardType, string> = {
-  spot_card: "景点卡片",
-  city_card: "城市卡片",
-  food_card: "美食卡片",
-  route_card: "路线卡片",
-  culture_card: "文化卡片",
-  generic_card: "通用卡片",
+  spot_card: "景点导览",
+  city_card: "城市导览",
+  food_card: "美食建议",
+  route_card: "路线建议",
+  culture_card: "文化故事",
+  generic_card: "旅行建议",
 };
 
 const cardTypeTone: Record<AnswerCardType, string> = {
@@ -26,14 +27,14 @@ const fallbackCard: AnswerCardData = {
   id: "fallback",
   card_type: "generic_card",
   title: "日本旅行导览",
-  subtitle: "通用回答",
-  description: "当前 AnswerCard 字段不完整，前端使用安全占位内容展示。",
-  story: "请继续输入景点、城市、美食、路线或文化问题。",
+  subtitle: "先从一个清晰方向开始",
+  description: "我会先给你一版适合第一次来日本游客的基础建议，再帮你继续拆成景点、路线、美食和住宿。",
+  story: "你可以直接问一个城市、景点、路线或文化问题，我会用导游式的方式整理重点。",
   audio: {},
   nearby: [],
   foods: [],
   hotels: [],
-  actions: [{ label: "继续追问", action: "ask_followup", enabled: true, source: "mock" }],
+  actions: [{ label: "继续了解", action: "ask_followup", enabled: true, source: "mock" }],
   metadata: { language: "zh", mock: true, sources: ["mock"] },
 };
 
@@ -50,47 +51,46 @@ export function AnswerCard({ card }: AnswerCardProps) {
   const cache = safeCard.metadata?.cache;
   const ranking = safeCard.metadata?.ranking;
   const relatedCandidates = safeCard.metadata?.related_candidates ?? [];
-  const showDebug = process.env.NODE_ENV !== "production";
+  const showDebug = canShowInternalDebug();
 
   return (
-    <article className="jag-card">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-        <div className="min-w-0">
+    <article className="jag-card jag-answer-card">
+      <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+        <div className="min-w-0 flex-1">
           <div className={`jag-answer-badge ${cardTypeTone[cardType]}`}>
-            {cardTypeLabels[cardType]} · {contentSource?.type === "content_library" ? "Content Library" : "Template"}
+            {cardTypeLabels[cardType]}
           </div>
-          <h2 className="break-all text-2xl font-black tracking-normal text-[var(--jag-color-ink)] sm:break-normal">
+          <h2 className="break-words text-2xl font-black leading-tight tracking-normal text-[var(--jag-color-ink)] sm:text-3xl">
             {safeCard.title}
           </h2>
-          <p className="mt-2 text-sm leading-6 text-[var(--jag-color-muted)]">{safeCard.subtitle}</p>
-          <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--jag-color-muted)]">
+          <p className="mt-2 text-sm font-semibold leading-6 text-[var(--jag-color-muted)]">{safeCard.subtitle}</p>
+          <p className="mt-4 max-w-3xl text-[15px] leading-8 text-[var(--jag-color-muted)]">
             {safeCard.description}
           </p>
+          {safeCard.recommendation_reason ? (
+            <p className="mt-4 inline-flex max-w-full rounded-full bg-blue-50 px-4 py-2 text-xs font-bold text-blue-700">
+              {safeCard.recommendation_reason}
+            </p>
+          ) : null}
         </div>
 
-        <div className="w-full rounded-2xl bg-[var(--jag-color-audio)] p-4 text-white lg:w-72">
-          <div className="flex min-w-0 items-center gap-3 text-sm font-bold">
-            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-blue-500">▶</span>
-            语音讲解占位 · 未接入真实 TTS
-          </div>
-          <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/15">
-            <div className="h-full w-2/5 rounded-full bg-blue-400" />
-          </div>
-          <p className="mt-3 text-xs leading-5 text-white/65">
-            {safeCard.audio?.text ?? "audio 字段已预留，后续可接入音频 URL。"}
+        <div className="jag-guide-note">
+          <div className="text-xs font-black uppercase tracking-normal text-white/70">AI Guide</div>
+          <p className="mt-2 text-sm font-bold leading-6 text-white">
+            我先帮你抓重点，再把下一步适合探索的方向放在下面。
           </p>
         </div>
       </div>
 
       <section className="jag-panel mt-6">
-        <h3 className="text-sm font-black text-[var(--jag-color-ink)]">故事讲解</h3>
-        <p className="mt-2 text-sm leading-7 text-[var(--jag-color-muted)]">{safeCard.story}</p>
+        <h3 className="text-sm font-black text-[var(--jag-color-ink)]">导游讲解</h3>
+        <p className="mt-3 text-[15px] leading-8 text-[var(--jag-color-muted)]">{safeCard.story}</p>
       </section>
 
-      <div className="mt-4 grid gap-4 lg:grid-cols-3">
-        <ListPanel title="附近推荐" empty="暂无附近推荐。" items={nearby.map((item) => `${item.name}${item.distance_text ? ` · ${item.distance_text}` : ""}`)} />
-        <ListPanel title="美食推荐" empty="暂无美食推荐。" items={foods.map((item) => `${item.name}${item.area ? ` · ${item.area}` : ""}`)} />
-        <ListPanel title="住宿建议" empty="暂无住宿建议。" items={hotels.map((item) => `${item.name}${item.area ? ` · ${item.area}` : ""}`)} />
+      <div className="mt-5 grid gap-4 lg:grid-cols-3">
+        <ListPanel title="附近可以顺路看" empty="暂时没有附近建议，可以继续问路线或周边景点。" items={nearby.map((item) => `${item.name}${item.distance_text ? ` · ${item.distance_text}` : ""}`)} />
+        <ListPanel title="可以搭配的美食" empty="暂时没有美食建议，可以继续问当地吃什么。" items={foods.map((item) => `${item.name}${item.area ? ` · ${item.area}` : ""}`)} />
+        <ListPanel title="住宿判断方向" empty="暂时没有住宿建议，可以继续问适合住在哪个区域。" items={hotels.map((item) => `${item.name}${item.area ? ` · ${item.area}` : ""}`)} />
       </div>
 
       <div className="mt-5 flex flex-wrap gap-3">
@@ -107,7 +107,7 @@ export function AnswerCard({ card }: AnswerCardProps) {
       </div>
 
       {showDebug && (intent || aiRuntime || contentSource || cache || ranking || relatedCandidates.length > 0) ? (
-        <div className="mt-4 rounded-2xl border border-dashed border-blue-200 bg-blue-50 p-3 text-xs font-bold leading-5 text-blue-800">
+        <div className="jag-internal-debug mt-4">
           {intent ? (
             <>
               <div>Intent: {intent.intent_type}</div>
@@ -160,10 +160,6 @@ export function AnswerCard({ card }: AnswerCardProps) {
           ) : null}
         </div>
       ) : null}
-
-      <div className="mt-4 text-xs font-semibold leading-5 text-[var(--jag-color-muted)]">
-        metadata: {safeCard.metadata?.mock ? "mock" : "live"} · sources: {(safeCard.metadata?.sources ?? []).join(", ")}
-      </div>
     </article>
   );
 }

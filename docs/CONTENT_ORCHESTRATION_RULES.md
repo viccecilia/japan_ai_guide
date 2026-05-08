@@ -40,3 +40,23 @@ For `generic_query`, return a normal main card and leave `related_cards` and `se
 ## Future Rules
 
 When real recommendation data exists, section ordering can use user intent, season, location, budget, and saved trip context.
+
+## R014 Strategy Layer
+
+R014 introduces a Recommendation Orchestrator between ranking and UI rendering. Ranking produces candidates; the orchestrator decides section order, related cards, and dedupe.
+
+## Section Priority
+
+- City query: spots, routes, foods, culture, hotels.
+- Route query: spots, foods, hotels, culture.
+- Spot query: nearby spots, foods, routes, culture.
+- Culture query: culture stories, related spots, routes.
+- Generic query: suggested prompts only.
+
+## Low Score Filtering
+
+Candidates below `0.7` are not promoted into related cards or sections.
+
+## Generic Fallback
+
+Generic fallback must avoid empty recommendation sections. It should return suggested prompts so the user can continue with a more specific travel question.

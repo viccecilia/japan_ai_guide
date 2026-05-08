@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
+from app.api import journey_routes
 from app.routers import chat, history, language, spots
 from app.schemas.api_response import error_response
 
@@ -21,6 +22,7 @@ app.include_router(chat.router)
 app.include_router(spots.router)
 app.include_router(history.router)
 app.include_router(language.router)
+app.include_router(journey_routes.router)
 
 
 @app.get("/health")

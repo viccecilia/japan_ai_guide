@@ -12,7 +12,7 @@ export function ChatInput({ value, isLoading, onChange, onSubmit }: ChatInputPro
     <div className="border-t border-[var(--jag-color-line)] bg-white/90 p-3 backdrop-blur sm:p-4">
       <div className="jag-input-shell">
         <label className="sr-only" htmlFor="jag-question">
-          旅行问题输入
+          日本旅行问题
         </label>
         <textarea
           id="jag-question"
@@ -37,7 +37,7 @@ export function ChatInput({ value, isLoading, onChange, onSubmit }: ChatInputPro
           disabled={isLoading}
           onClick={onSubmit}
         >
-          {isLoading ? "请求中" : "发送"}
+          {isLoading ? "整理中" : "发送"}
         </button>
       </div>
       <div className="mx-auto mt-2 max-w-4xl px-1 text-xs font-semibold text-[var(--jag-color-muted)]">

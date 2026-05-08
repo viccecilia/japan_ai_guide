@@ -91,7 +91,7 @@ def _score_item(query: str, target_values: list[str], item: ContentIndexItem) ->
         return 0.95, "alias"
     if title and title in query:
         return 0.9, "title_contains"
-    if any(tag and tag in query for tag in tags):
+    if any(tag and (tag in query or any(tag in target for target in targets)) for tag in tags):
         return 0.75, "tag"
     if slug and slug in query:
         return 0.7, "slug"

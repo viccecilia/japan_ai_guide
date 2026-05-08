@@ -5,7 +5,7 @@ from app.schemas.multi_card_response import RelatedAnswerCard
 from app.services.content_repository import content_repository
 
 
-MAX_RELATED_CARDS = 4
+MAX_RELATED_CARDS = 3
 MIN_RELATED_SCORE = 0.7
 
 
@@ -19,19 +19,34 @@ def build_related_cards(
         return []
 
     cards: list[RelatedAnswerCard] = []
+    used = {main_slug} if main_slug else set()
     for candidate in candidates:
+        card = build_related_card_from_candidate(candidate, language, len(cards))
         slug = candidate.get("slug")
         score = float(candidate.get("score") or 0)
-        content_type = candidate.get("content_type")
-        if not isinstance(slug, str) or slug == main_slug or score < MIN_RELATED_SCORE:
+        if card is None or not isinstance(slug, str) or slug in used or score < MIN_RELATED_SCORE:
             continue
-        content = content_repository.find_by_slug(slug, language, str(content_type) if content_type else None)
-        if content is None:
-            continue
-        cards.append(_content_to_related_card(content, candidate, len(cards)))
+        cards.append(card)
+        used.add(slug)
         if len(cards) >= MAX_RELATED_CARDS:
             break
     return cards
+
+
+def build_related_card_from_candidate(
+    candidate: dict[str, str | float | int | None],
+    language: str,
+    index: int,
+) -> RelatedAnswerCard | None:
+    slug = candidate.get("slug")
+    score = float(candidate.get("score") or 0)
+    content_type = candidate.get("content_type")
+    if not isinstance(slug, str) or score < MIN_RELATED_SCORE:
+        return None
+    content = content_repository.find_by_slug(slug, language, str(content_type) if content_type else None)
+    if content is None:
+        return None
+    return _content_to_related_card(content, candidate, index)
 
 
 def _content_to_related_card(
@@ -50,16 +65,28 @@ def _content_to_related_card(
         foods=content.foods,
         hotels=content.hotels,
         actions=[
-            AnswerCardAction(label="查看建议", action="ask_followup", enabled=True, source="computed"),
+            AnswerCardAction(label="继续了解", action="ask_followup", enabled=True, source="computed"),
         ],
         card_group="related",
         display_priority=80 - index,
         display_style="compact",
-        recommendation_reason=f"{candidate.get('matched_by')} match · score {float(candidate.get('score') or 0):.2f}",
+        recommendation_reason=_recommendation_reason(content.content_type),
     )
     card.metadata.content_source = {"type": "content_library", "slug": content.slug, "language": content.language}
     card.metadata.ranking = candidate
     return RelatedAnswerCard.model_validate(card.model_dump())
+
+
+def _recommendation_reason(content_type: str) -> str:
+    reasons = {
+        "spot": "适合加入同一天的顺路景点。",
+        "city": "适合先建立整体旅行方向。",
+        "food": "适合在行程中安排一段当地用餐体验。",
+        "route": "适合直接作为半日或一日路线参考。",
+        "culture": "适合在参观前先理解背景故事。",
+        "hotel": "适合关注交通便利和夜间安全感的游客。",
+    }
+    return reasons.get(content_type, "适合作为下一步继续探索。")
 
 
 def _card_type_for_content(content_type: str) -> CardType:
